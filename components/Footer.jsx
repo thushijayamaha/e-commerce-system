@@ -52,9 +52,9 @@ const Footer = () => {
                 <div className="flex flex-col items-start justify-between gap-10 border-b border-white/10 py-10 text-slate-300 md:flex-row">
                     <div>
                         <Link href="/" className="text-4xl font-semibold text-white">
-                            <span className="text-fuchsia-400">go</span>cart<span className="text-fuchsia-400 text-5xl leading-0">.</span>
+                            <span className="text-fuchsia-400">shop</span>NOW<span className="text-fuchsia-400 text-5xl leading-0">.</span>
                         </Link>
-                        <p className="mt-6 max-w-[410px] text-sm text-slate-400">Welcome to gocart, your ultimate destination for the latest and smartest gadgets. From smartphones and smartwatches to essential accessories, we bring you the best in innovation — all in one place.</p>
+                        <p className="mt-6 max-w-[410px] text-sm text-slate-400">Welcome to shopNOW, your ultimate destination for the latest and smartest gadgets. From smartphones and smartwatches to essential accessories, we bring you the best in innovation — all in one place.</p>
                         <div className="mt-5 flex items-center gap-3">
                             {socialIcons.map((item, i) => (
                                 <Link href={item.link} key={i} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 transition hover:scale-105 hover:bg-white/20">
@@ -80,7 +80,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <p className="py-4 text-sm text-slate-400">
-                    Copyright 2025 © gocart All Right Reserved.
+                    Copyright 2025 © shopNOW All Rights Reserved.
                 </p>
             </div>
         </footer>

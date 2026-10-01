@@ -20,30 +20,25 @@ export default function Cart() {
     const [cartArray, setCartArray] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
 
-    const createCartArray = () => {
-        setTotalPrice(0);
-        const cartArray = [];
-        for (const [key, value] of Object.entries(cartItems)) {
-            const product = products.find(product => product.id === key);
-            if (product) {
-                cartArray.push({
-                    ...product,
-                    quantity: value,
-                });
-                setTotalPrice(prev => prev + product.price * value);
-            }
-        }
-        setCartArray(cartArray);
-    }
-
     const handleDeleteItemFromCart = (productId) => {
         dispatch(deleteItemFromCart({ productId }))
     }
 
     useEffect(() => {
-        if (products.length > 0) {
-            createCartArray();
+        if (products.length === 0) return;
+
+        const nextCartArray = [];
+        let nextTotalPrice = 0;
+        for (const [productId, quantity] of Object.entries(cartItems)) {
+            const product = products.find(product => product.id === productId);
+            if (product) {
+                nextCartArray.push({ ...product, quantity });
+                nextTotalPrice += product.price * quantity;
+            }
         }
+
+        setCartArray(nextCartArray);
+        setTotalPrice(nextTotalPrice);
     }, [cartItems, products]);
 
     return cartArray.length > 0 ? (

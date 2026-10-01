@@ -28,7 +28,7 @@ const Navbar = () => {
                 <div className="mx-auto flex max-w-7xl items-center justify-between py-4 transition-all">
 
                     <Link href="/" className="relative text-4xl font-semibold text-slate-800">
-                        <span className="text-violet-600">go</span>cart<span className="text-fuchsia-500 text-5xl leading-0">.</span>
+                        <span className="text-violet-600">shop</span>NOW<span className="text-fuchsia-500 text-5xl leading-0">.</span>
                         <p className="absolute -top-1 -right-8 flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 px-3 py-0.5 text-[10px] font-semibold text-white shadow-md">
                             plus
                         </p>

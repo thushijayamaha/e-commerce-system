@@ -7,7 +7,7 @@ import LatestProducts from "@/components/LatestProducts";
 
 export default function Home() {
     return (
-        <div>
+        <div className="home-page">
             <Hero />
             <LatestProducts />
             <BestSelling />
