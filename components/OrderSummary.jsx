@@ -31,8 +31,8 @@ const OrderSummary = ({ totalPrice, items }) => {
     }
 
     return (
-        <div className='w-full max-w-lg lg:max-w-[340px] bg-slate-50/30 border border-slate-200 text-slate-500 text-sm rounded-xl p-7'>
-            <h2 className='text-xl font-medium text-slate-600'>Payment Summary</h2>
+        <div className='w-full max-w-lg rounded-2xl border border-slate-200/80 bg-white p-5 text-sm text-slate-500 shadow-[0_18px_50px_-40px_rgba(30,30,50,0.55)] sm:p-6 lg:max-w-[340px]'>
+            <h2 className='text-lg font-semibold text-slate-800'>Payment Summary</h2>
             <p className='text-slate-400 text-xs my-4'>Payment Method</p>
             <div className='flex gap-2 items-center'>
                 <input type="radio" id="COD" onChange={() => setPaymentMethod('COD')} checked={paymentMethod === 'COD'} className='accent-gray-500' />
@@ -54,7 +54,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                         <div>
                             {
                                 addressList.length > 0 && (
-                                    <select className='border border-slate-400 p-2 w-full my-3 outline-none rounded' onChange={(e) => setSelectedAddress(addressList[e.target.value])} >
+                                    <select className='my-3 w-full rounded-xl border border-slate-200 bg-white p-2.5 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-100' onChange={(e) => setSelectedAddress(addressList[e.target.value])} >
                                         <option value="">Select Address</option>
                                         {
                                             addressList.map((address, index) => (
@@ -85,8 +85,8 @@ const OrderSummary = ({ totalPrice, items }) => {
                 {
                     !coupon ? (
                         <form onSubmit={e => toast.promise(handleCouponCode(e), { loading: 'Checking Coupon...' })} className='flex justify-center gap-3 mt-3'>
-                            <input onChange={(e) => setCouponCodeInput(e.target.value)} value={couponCodeInput} type="text" placeholder='Coupon Code' className='border border-slate-400 p-1.5 rounded w-full outline-none' />
-                            <button className='bg-slate-600 text-white px-3 rounded hover:bg-slate-800 active:scale-95 transition-all'>Apply</button>
+                            <input onChange={(e) => setCouponCodeInput(e.target.value)} value={couponCodeInput} type="text" placeholder='Coupon Code' className='w-full min-w-0 rounded-xl border border-slate-200 px-3 py-2 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-100' />
+                            <button className='rounded-xl bg-slate-800 px-4 font-medium text-white transition hover:bg-violet-700 active:scale-95'>Apply</button>
                         </form>
                     ) : (
                         <div className='w-full flex items-center justify-center gap-2 text-xs mt-2'>
@@ -101,7 +101,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                 <p>Total:</p>
                 <p className='font-medium text-right'>{currency}{coupon ? (totalPrice - (coupon.discount / 100 * totalPrice)).toFixed(2) : totalPrice.toLocaleString()}</p>
             </div>
-            <button onClick={e => toast.promise(handlePlaceOrder(e), { loading: 'placing Order...' })} className='w-full bg-slate-700 text-white py-2.5 rounded hover:bg-slate-900 active:scale-95 transition-all'>Place Order</button>
+            <button onClick={e => toast.promise(handlePlaceOrder(e), { loading: 'placing Order...' })} className='w-full rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-500 py-3 font-semibold text-white shadow-md shadow-violet-200/60 transition hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]'>Place Order</button>
 
             {showAddressModal && <AddressModal setShowAddressModal={setShowAddressModal} />}
 

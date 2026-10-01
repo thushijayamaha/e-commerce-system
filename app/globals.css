@@ -10,26 +10,6 @@
         }
     }
 
-    @keyframes homeRise {
-        from {
-            opacity: 0;
-            transform: translateY(18px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes homeProduct3D {
-        0%, 100% {
-            transform: perspective(1100px) rotateY(-9deg) rotateX(3deg) translateY(0);
-        }
-        50% {
-            transform: perspective(1100px) rotateY(9deg) rotateX(-2deg) translateY(-8px);
-        }
-    }
-
     @keyframes homeFloat {
         0%, 100% {
             transform: translateY(0);
@@ -44,21 +24,6 @@
         background:
             radial-gradient(circle at 12% 2%, rgba(211, 225, 184, 0.4), transparent 30%),
             linear-gradient(135deg, #f4f5ed 0%, #f8f5ee 58%, #f1f4ed 100%);
-    }
-
-    .home-enter {
-        animation: homeRise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-    }
-
-    .home-enter-late {
-        animation: homeRise 800ms 140ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-    }
-
-    .home-product-3d {
-        transform-style: preserve-3d;
-        filter: drop-shadow(0 24px 18px rgba(7, 28, 23, 0.28));
-        animation: homeProduct3D 7s ease-in-out infinite;
-        will-change: transform;
     }
 
     .home-float {
@@ -79,6 +44,13 @@
 @layer base {
     :root {
         color-scheme: light;
+        --shop-ink: #1d2926;
+        --shop-green: #173c34;
+        --shop-lime: #cbe170;
+        --shop-purple: #6d45c8;
+        --shop-fuchsia: #d54eb5;
+        --shop-muted: #68716e;
+        --shop-line: rgba(34, 48, 43, 0.12);
     }
 
     * {
@@ -89,9 +61,9 @@
         margin: 0;
         min-height: 100vh;
         background:
-            radial-gradient(circle at top left, rgba(168, 85, 247, 0.16), transparent 32%),
-            linear-gradient(135deg, #f8f7ff 0%, #f4f7ff 45%, #eef5ff 100%);
-        color: #0f172a;
+            radial-gradient(circle at 6% 0%, rgba(168, 85, 247, 0.09), transparent 30%),
+            linear-gradient(135deg, #f8f7f2 0%, #f4f5ef 52%, #f8f5ef 100%);
+        color: var(--shop-ink);
         font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -102,6 +74,11 @@
     ::selection {
         background: rgba(168, 85, 247, 0.25);
         color: #111827;
+    }
+
+    a,
+    button {
+        -webkit-tap-highlight-color: transparent;
     }
 }
 

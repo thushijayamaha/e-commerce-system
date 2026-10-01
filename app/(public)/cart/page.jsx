@@ -42,15 +42,33 @@ export default function Cart() {
     }, [cartItems, products]);
 
     return cartArray.length > 0 ? (
-        <div className="min-h-screen mx-6 text-slate-800">
+        <div className="min-h-screen px-4 text-slate-800 sm:px-6">
 
-            <div className="max-w-7xl mx-auto ">
+            <div className="mx-auto max-w-7xl py-4">
                 {/* Title */}
                 <PageTitle heading="My Cart" text="items in your cart" linkText="Add more" />
 
-                <div className="flex items-start justify-between gap-5 max-lg:flex-col">
+                <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8">
 
-                    <table className="w-full max-w-4xl text-slate-600 table-auto">
+                    <div className="w-full space-y-3 md:hidden">
+                        {cartArray.map((item) => (
+                            <div key={item.id} className="flex items-center gap-3 rounded-2xl border border-slate-200/80 bg-white p-3 shadow-sm">
+                                <div className="flex size-16 shrink-0 items-center justify-center rounded-xl bg-[#f2f3ed]">
+                                    <Image src={item.images[0]} className="h-14 w-14 object-contain" alt={item.name} width={64} height={64} />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                    <p className="truncate text-sm font-semibold text-slate-800">{item.name}</p>
+                                    <p className="text-xs text-slate-500">{item.category} · {currency}{item.price}</p>
+                                    <div className="mt-2"><Counter productId={item.id} /></div>
+                                </div>
+                                <button onClick={() => handleDeleteItemFromCart(item.id)} aria-label={`Remove ${item.name}`} className="rounded-full p-2 text-rose-500 transition hover:bg-rose-50 active:scale-95">
+                                    <Trash2Icon size={17} />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+
+                    <table className="hidden w-full max-w-4xl table-auto text-slate-600 md:table">
                         <thead>
                             <tr className="max-sm:text-sm">
                                 <th className="text-left">Product</th>
@@ -62,13 +80,13 @@ export default function Cart() {
                         <tbody>
                             {
                                 cartArray.map((item, index) => (
-                                    <tr key={index} className="space-x-2">
-                                        <td className="flex gap-3 my-4">
-                                            <div className="flex gap-3 items-center justify-center bg-slate-100 size-18 rounded-md">
-                                                <Image src={item.images[0]} className="h-14 w-auto" alt="" width={45} height={45} />
+                                    <tr key={index} className="border-b border-slate-200/70">
+                                        <td className="flex gap-3 py-4">
+                                            <div className="flex size-16 shrink-0 items-center justify-center rounded-xl bg-[#f2f3ed]">
+                                                <Image src={item.images[0]} className="h-14 w-14 object-contain" alt={item.name} width={64} height={64} />
                                             </div>
                                             <div>
-                                                <p className="max-sm:text-sm">{item.name}</p>
+                                                <p className="font-medium text-slate-800">{item.name}</p>
                                                 <p className="text-xs text-slate-500">{item.category}</p>
                                                 <p>{currency}{item.price}</p>
                                             </div>
@@ -78,7 +96,7 @@ export default function Cart() {
                                         </td>
                                         <td className="text-center">{currency}{(item.price * item.quantity).toLocaleString()}</td>
                                         <td className="text-center max-md:hidden">
-                                            <button onClick={() => handleDeleteItemFromCart(item.id)} className=" text-red-500 hover:bg-red-50 p-2.5 rounded-full active:scale-95 transition-all">
+                                                <button onClick={() => handleDeleteItemFromCart(item.id)} aria-label={`Remove ${item.name}`} className="rounded-full p-2.5 text-rose-500 transition-all hover:bg-rose-50 active:scale-95">
                                                 <Trash2Icon size={18} />
                                             </button>
                                         </td>
@@ -93,7 +111,7 @@ export default function Cart() {
         </div>
     ) : (
         <div className="min-h-[80vh] mx-6 flex items-center justify-center text-slate-400">
-            <h1 className="text-2xl sm:text-4xl font-semibold">Your cart is empty</h1>
+            <h1 className="text-2xl font-semibold sm:text-4xl">Your cart is empty</h1>
         </div>
     )
 }

@@ -23,37 +23,35 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="relative border-b border-slate-200/80 bg-white/80 backdrop-blur-xl shadow-sm">
-            <div className="mx-6">
-                <div className="mx-auto flex max-w-7xl items-center justify-between py-4 transition-all">
-
-                    <Link href="/" className="relative text-4xl font-semibold text-slate-800">
-                        <span className="text-violet-600">shop</span>NOW<span className="text-fuchsia-500 text-5xl leading-0">.</span>
-                        <p className="absolute -top-1 -right-8 flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 px-3 py-0.5 text-[10px] font-semibold text-white shadow-md">
-                            plus
-                        </p>
+        <nav className="sticky top-0 z-50 border-b border-white/70 bg-[#f8f7f2]/85 shadow-[0_8px_28px_-24px_rgba(35,25,60,0.65)] backdrop-blur-2xl">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="flex min-h-[70px] items-center justify-between gap-3">
+                    <Link href="/" className="relative shrink-0 text-2xl font-semibold text-slate-800 sm:text-3xl">
+                        <span className="text-violet-600">shop</span>NOW<span className="text-fuchsia-500">.</span>
+                        <span className="absolute -right-8 -top-1 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 px-2.5 py-0.5 text-[9px] font-semibold text-white shadow-sm">plus</span>
                     </Link>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden items-center gap-4 text-slate-600 sm:flex lg:gap-8">
-                        <Link href="/" className="transition hover:text-violet-600">Home</Link>
-                        <Link href="/shop" className="transition hover:text-violet-600">Shop</Link>
-                        <Link href="/" className="transition hover:text-violet-600">About</Link>
-                        <Link href="/" className="transition hover:text-violet-600">Contact</Link>
+                    <div className="hidden items-center gap-6 text-sm font-medium text-slate-600 xl:flex">
+                        <Link href="/" className="transition-colors hover:text-violet-700">Home</Link>
+                        <Link href="/shop" className="transition-colors hover:text-violet-700">Shop</Link>
+                        <Link href="/" className="transition-colors hover:text-violet-700">About</Link>
+                        <Link href="/" className="transition-colors hover:text-violet-700">Contact</Link>
+                    </div>
 
-                        <form onSubmit={handleSearch} className="hidden w-xs items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-3 text-sm shadow-sm xl:flex">
-                            <Search size={18} className="text-slate-500" />
-                            <input className="w-full bg-transparent outline-none placeholder-slate-500" type="text" placeholder="Search products" value={search} onChange={(e) => setSearch(e.target.value)} required />
+                    <div className="flex items-center gap-2 sm:gap-3">
+                        <form onSubmit={handleSearch} className="hidden w-52 items-center gap-2 rounded-full border border-slate-200/80 bg-white/75 px-4 py-2.5 text-sm shadow-sm transition focus-within:border-violet-300 focus-within:ring-4 focus-within:ring-violet-100/70 xl:flex 2xl:w-60">
+                            <Search size={17} className="shrink-0 text-slate-400" />
+                            <input className="w-full bg-transparent outline-none placeholder:text-slate-400" type="text" placeholder="Search products" value={search} onChange={(e) => setSearch(e.target.value)} required />
                         </form>
 
-                        <Link href="/cart" className="relative flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-slate-700 transition hover:bg-violet-50 hover:text-violet-600">
+                        <Link href="/cart" aria-label={`Cart, ${cartCount} items`} className="relative flex h-10 items-center gap-2 rounded-full border border-slate-200/80 bg-white/75 px-3 text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-200 hover:text-violet-700 hover:shadow-md">
                             <ShoppingCart size={18} />
-                            Cart
-                            <span className="absolute -top-1 left-3 flex size-3.5 items-center justify-center rounded-full bg-slate-800 text-[8px] font-semibold text-white">{cartCount}</span>
+                            <span className="hidden text-sm font-medium sm:inline">Cart</span>
+                            <span className="absolute -right-1.5 -top-1.5 flex min-h-5 min-w-5 items-center justify-center rounded-full bg-violet-600 px-1 text-[10px] font-semibold text-white">{cartCount}</span>
                         </Link>
 
                         {!user ? (
-                            <button onClick={openSignIn} className="rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 px-8 py-2 text-white shadow-lg shadow-violet-200 transition hover:scale-[1.02]">
+                            <button onClick={openSignIn} className="rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-violet-200/70 transition hover:-translate-y-0.5 hover:shadow-lg sm:px-6">
                                 Login
                             </button>
                         ) : (
@@ -68,27 +66,17 @@ const Navbar = () => {
                             </UserButton>
                         )}
                     </div>
+                </div>
 
-                    {/* Mobile User Button  */}
-                    <div className="sm:hidden">
-                        {user ? (
-                            <div>
-                                <UserButton>
-                                    <UserButton.MenuItems>
-                                        <UserButton.Action
-                                            labelIcon={<ShoppingCart size={16} />}
-                                            label="Cart"
-                                            onClick={() => router.push('/cart')}
-                                        />
-                                    </UserButton.MenuItems>
-                                </UserButton>
-                            </div>
-                        ) : (
-                            <button onClick={openSignIn} className="rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 px-7 py-1.5 text-sm text-white shadow-lg transition hover:scale-[1.02]">
-                                Login
-                            </button>
-                        )}
+                <div className="flex items-center gap-3 pb-3 xl:hidden">
+                    <div className="hidden items-center gap-4 text-sm font-medium text-slate-600 sm:flex">
+                        <Link href="/" className="transition-colors hover:text-violet-700">Home</Link>
+                        <Link href="/shop" className="transition-colors hover:text-violet-700">Shop</Link>
                     </div>
+                    <form onSubmit={handleSearch} className="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-slate-200/80 bg-white/75 px-3 py-2 text-sm shadow-sm focus-within:border-violet-300 focus-within:ring-4 focus-within:ring-violet-100/70">
+                        <Search size={17} className="shrink-0 text-slate-400" />
+                        <input className="w-full min-w-0 bg-transparent outline-none placeholder:text-slate-400" type="text" placeholder="Search products" value={search} onChange={(e) => setSearch(e.target.value)} required />
+                    </form>
                 </div>
             </div>
         </nav>

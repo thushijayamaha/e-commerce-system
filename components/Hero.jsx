@@ -4,18 +4,25 @@ import { ArrowRightIcon, ChevronRightIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import CategoriesMarquee from './CategoriesMarquee'
 
 const Hero = () => {
 
     const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$'
+    const reduceMotion = useReducedMotion()
 
     return (
         <div className='mx-6'>
             <div className='flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10'>
                 <div className='group relative flex flex-1 flex-col overflow-hidden rounded-[28px] bg-[#173c34] shadow-[0_25px_70px_-35px_rgba(23,60,52,0.65)] xl:min-h-100'>
-                    <div className='pointer-events-none absolute inset-0 bg-[linear-gradient(128deg,transparent_48%,rgba(255,255,255,0.035)_48.2%,rgba(255,255,255,0.035)_49%,transparent_49.2%)]' />
-                    <div className='home-enter relative z-10 p-6 sm:p-14'>
+                    <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_16%,rgba(203,225,112,0.17),transparent_30%),linear-gradient(128deg,transparent_48%,rgba(255,255,255,0.035)_48.2%,rgba(255,255,255,0.035)_49%,transparent_49.2%)]' />
+                    <motion.div
+                        className='relative z-10 p-6 sm:p-14'
+                        initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                    >
                         <div className='inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-2 py-1 pr-4 text-xs text-white/90 backdrop-blur-sm sm:text-sm'>
                             <span className='rounded-full bg-[#cbe170] px-3 py-1 text-[10px] font-semibold tracking-wide text-[#173c34]'>JUST IN</span> Free shipping on orders above $50 <ChevronRightIcon className='transition-all group-hover:translate-x-1' size={16} />
                         </div>
@@ -28,10 +35,22 @@ const Hero = () => {
                             <p className='text-3xl font-semibold text-white'>{currency}4.90</p>
                         </div>
                         <Link href='/shop' className='mt-7 inline-flex items-center gap-3 rounded-full bg-[#cbe170] px-6 py-3 text-sm font-semibold text-[#173c34] transition hover:bg-[#d9ed89] active:scale-95 sm:mt-9'>Shop collection <ArrowRightIcon size={17} /></Link>
-                    </div>
-                    <Image className='home-product-3d relative z-0 -mt-2 w-full sm:absolute sm:bottom-0 sm:right-0 sm:mt-0 sm:max-w-sm md:right-8' src={assets.product_img4} alt="White over-ear headphones" />
+                    </motion.div>
+                    <motion.div
+                        className='relative z-0 -mt-2 w-full sm:absolute sm:bottom-0 sm:right-0 sm:mt-0 sm:max-w-sm md:right-8'
+                        style={{ transformStyle: 'preserve-3d', perspective: 1100, filter: 'drop-shadow(0 24px 18px rgba(7, 28, 23, 0.28))' }}
+                        animate={reduceMotion ? undefined : { y: [0, -7, 0], rotateY: [-8, 8, -8], rotateX: [2, -2, 2] }}
+                        transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity }}
+                    >
+                        <Image className='h-auto w-full' src={assets.product_img4} alt="White over-ear headphones" priority />
+                    </motion.div>
                 </div>
-                <div className='home-enter-late flex w-full flex-col gap-5 text-sm text-[#383a32] md:flex-row xl:max-w-sm xl:flex-col'>
+                <motion.div
+                    className='flex w-full flex-col gap-5 text-sm text-[#383a32] md:flex-row xl:max-w-sm xl:flex-col'
+                    initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+                >
                     <Link href='/shop' className='group flex flex-1 items-center justify-between overflow-hidden rounded-[18px] bg-[#f0c5a8] p-6 px-8 transition duration-300 hover:-translate-y-1 hover:shadow-xl'>
                         <div>
                             <p className='max-w-40 text-3xl font-semibold leading-tight text-[#302d28]'>Best<br />products</p>
@@ -46,7 +65,7 @@ const Hero = () => {
                         </div>
                         <Image className='home-float w-35 [animation-delay:600ms]' src={assets.hero_product_img2} alt="" />
                     </Link>
-                </div>
+                </motion.div>
             </div>
             <CategoriesMarquee />
         </div>

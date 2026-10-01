@@ -21,10 +21,12 @@ import { useSelector } from "react-redux"
         : products;
 
     return (
-        <div className="min-h-[70vh] mx-6">
-            <div className=" max-w-7xl mx-auto">
-                <h1 onClick={() => router.push('/shop')} className="text-2xl text-slate-500 my-6 flex items-center gap-2 cursor-pointer"> {search && <MoveLeftIcon size={20} />}  All <span className="text-slate-700 font-medium">Products</span></h1>
-                <div className="grid grid-cols-2 sm:flex flex-wrap gap-6 xl:gap-12 mx-auto mb-32">
+        <div className="min-h-[70vh] px-4 sm:px-6">
+            <div className="mx-auto max-w-7xl py-5">
+                <button type="button" onClick={() => router.push('/shop')} className="my-5 flex items-center gap-2 text-left text-2xl font-semibold text-slate-800 transition hover:text-violet-700">
+                    {search && <MoveLeftIcon size={20} />} {search ? 'Search results' : 'All'} <span className="text-violet-600">Products</span>
+                </button>
+                <div className="mb-24 grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-3 sm:gap-x-5 lg:grid-cols-4 xl:gap-x-7">
                     {filteredProducts.map((product) => <ProductCard key={product.id} product={product} />)}
                 </div>
             </div>

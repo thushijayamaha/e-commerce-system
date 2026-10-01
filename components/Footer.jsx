@@ -40,24 +40,24 @@ const Footer = () => {
     ];
 
     const socialIcons = [
-        { icon: FacebookIcon, link: "https://www.facebook.com" },
-        { icon: InstagramIcon, link: "https://www.instagram.com" },
-        { icon: TwitterIcon, link: "https://twitter.com" },
-        { icon: LinkedinIcon, link: "https://www.linkedin.com" },
+        { icon: FacebookIcon, label: "Facebook", link: "https://www.facebook.com" },
+        { icon: InstagramIcon, label: "Instagram", link: "https://www.instagram.com" },
+        { icon: TwitterIcon, label: "Twitter", link: "https://twitter.com" },
+        { icon: LinkedinIcon, label: "LinkedIn", link: "https://www.linkedin.com" },
     ]
 
     return (
-        <footer className="mx-6 rounded-[32px] bg-gradient-to-br from-slate-950 via-slate-900 to-violet-950 text-slate-300 shadow-[0_25px_80px_-25px_rgba(15,23,42,0.55)]">
+        <footer className="mx-4 rounded-[24px] bg-gradient-to-br from-[#141e1c] via-[#182320] to-[#29203c] px-5 text-slate-300 shadow-[0_28px_70px_-32px_rgba(15,23,42,0.55)] sm:mx-6 sm:rounded-[28px] sm:px-8">
             <div className="mx-auto max-w-7xl">
-                <div className="flex flex-col items-start justify-between gap-10 border-b border-white/10 py-10 text-slate-300 md:flex-row">
+                <div className="flex flex-col items-start justify-between gap-10 border-b border-white/10 py-10 sm:py-14 md:flex-row">
                     <div>
                         <Link href="/" className="text-4xl font-semibold text-white">
                             <span className="text-fuchsia-400">shop</span>NOW<span className="text-fuchsia-400 text-5xl leading-0">.</span>
                         </Link>
-                        <p className="mt-6 max-w-[410px] text-sm text-slate-400">Welcome to shopNOW, your ultimate destination for the latest and smartest gadgets. From smartphones and smartwatches to essential accessories, we bring you the best in innovation — all in one place.</p>
+                        <p className="mt-5 max-w-[410px] text-sm leading-6 text-slate-400">Welcome to shopNOW, your ultimate destination for the latest and smartest gadgets. From smartphones and smartwatches to essential accessories, we bring you the best in innovation — all in one place.</p>
                         <div className="mt-5 flex items-center gap-3">
                             {socialIcons.map((item, i) => (
-                                <Link href={item.link} key={i} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 transition hover:scale-105 hover:bg-white/20">
+                                <Link href={item.link} key={i} aria-label={`Visit our ${item.label} page`} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/15">
                                     <item.icon />
                                 </Link>
                             ))}
@@ -79,7 +79,7 @@ const Footer = () => {
                         ))}
                     </div>
                 </div>
-                <p className="py-4 text-sm text-slate-400">
+                <p className="py-4 text-xs text-slate-400 sm:text-sm">
                     Copyright 2025 © shopNOW All Rights Reserved.
                 </p>
             </div>

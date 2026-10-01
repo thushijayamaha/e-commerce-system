@@ -25,20 +25,20 @@ export default function StoreShop() {
     }, [])
 
     return !loading ? (
-        <div className="min-h-[70vh] mx-6">
+        <div className="min-h-[70vh] px-4 sm:px-6">
 
             {/* Store Info Banner */}
             {storeInfo && (
-                <div className="max-w-7xl mx-auto bg-slate-50 rounded-xl p-6 md:p-10 mt-6 flex flex-col md:flex-row items-center gap-6 shadow-xs">
+                <div className="mx-auto mt-6 flex max-w-7xl flex-col items-center gap-6 rounded-2xl border border-slate-200/70 bg-white/80 p-5 shadow-[0_18px_50px_-42px_rgba(30,30,50,0.5)] sm:p-7 md:flex-row md:p-9">
                     <Image
                         src={storeInfo.logo}
                         alt={storeInfo.name}
-                        className="size-32 sm:size-38 object-cover border-2 border-slate-100 rounded-md"
+                        className="size-28 rounded-2xl border border-slate-200 bg-[#f3f4ee] object-cover sm:size-32"
                         width={200}
                         height={200}
                     />
-                    <div className="text-center md:text-left">
-                        <h1 className="text-3xl font-semibold text-slate-800">{storeInfo.name}</h1>
+                    <div className="min-w-0 text-center md:text-left">
+                        <h1 className="text-3xl font-semibold tracking-tight text-slate-900">{storeInfo.name}</h1>
                         <p className="text-sm text-slate-600 mt-2 max-w-lg">{storeInfo.description}</p>
                         <div className="text-xs text-slate-500 mt-4 space-y-1"></div>
                         <div className="space-y-2 text-sm text-slate-500">
@@ -57,9 +57,9 @@ export default function StoreShop() {
             )}
 
             {/* Products */}
-            <div className=" max-w-7xl mx-auto mb-40">
-                <h1 className="text-2xl mt-12">Shop <span className="text-slate-800 font-medium">Products</span></h1>
-                <div className="mt-5 grid grid-cols-2 sm:flex flex-wrap gap-6 xl:gap-12 mx-auto">
+            <div className="mx-auto mb-32 max-w-7xl">
+                <h2 className="mt-12 text-2xl font-semibold text-slate-900">Shop <span className="text-violet-600">Products</span></h2>
+                <div className="mt-6 grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-3 sm:gap-x-5 lg:grid-cols-4 xl:gap-x-7">
                     {products.map((product) => <ProductCard key={product.id} product={product} />)}
                 </div>
             </div>
